@@ -10,7 +10,7 @@ namespace Program2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("请您输入一组整数，中间用逗号隔开：");
+            Console.WriteLine("请您输入一组整数，用逗号隔开：");
 
             String str = Console.ReadLine();
             String[] s = str.Split(',');
