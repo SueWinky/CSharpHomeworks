@@ -19,16 +19,17 @@ namespace CSharp_Test
         {
             get { return detail; }
         }
-        public Order(int id, string itemName, string customerName)
+        public Order(int id, string itemName, string customerName,int orderAmount)
         {
             detail = new OrderDetail();
             Id = id;
             detail.ItemName = itemName;
             detail.CustomerName = customerName;
+            detail.OrderAmount = orderAmount;
         }
         public void PrintInformation()
         {
-            Console.WriteLine("订单号：" + id.ToString() + " 商品名称：" + detail.ItemName + " 用户名称：" + detail.CustomerName + "\n");
+            Console.WriteLine("订单号：" + id.ToString() + " 商品名称：" + detail.ItemName + " 用户名称：" + detail.CustomerName + " 订单金额：" + detail.OrderAmount+"\n");
         }
     }
 
@@ -36,6 +37,7 @@ namespace CSharp_Test
     {
         private string itemname;
         private string customername;
+        private int orderamount;
         public string ItemName
         {
             get { return itemname; }
@@ -45,6 +47,11 @@ namespace CSharp_Test
         {
             get { return customername; }
             set { customername = value; }
+        }
+        public int OrderAmount
+        {
+            get { return orderamount; }
+            set { orderamount = value; }
         }
     }
 
@@ -57,9 +64,9 @@ namespace CSharp_Test
             orderList = new List<Order>();
             orderIndex = 0;
         }
-        public void AddOrder(string itemName, string customerName)
+        public void AddOrder(string itemName, string customerName,int orderAmount)
         {
-            orderList.Add(new Order(++orderIndex, itemName, customerName));
+            orderList.Add(new Order(++orderIndex, itemName, customerName,orderAmount));
         }
         public bool FindOrderById(int id)
         {
@@ -69,7 +76,7 @@ namespace CSharp_Test
                 if (orderList[i].Id == id)
                 {
                     found = true;
-                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + "\n");
+                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + " 订单金额：" + orderList[i].Detail.OrderAmount + "\n");
                 }
             }
             return found;
@@ -82,7 +89,7 @@ namespace CSharp_Test
                 if (orderList[i].Detail.ItemName == ItemName)
                 {
                     found = true;
-                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + "\n");
+                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + " 订单金额：" + orderList[i].Detail.OrderAmount + "\n");
                 }
             }
             return found;
@@ -95,7 +102,20 @@ namespace CSharp_Test
                 if (orderList[i].Detail.CustomerName == CustomerName)
                 {
                     found = true;
-                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + "\n");
+                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + " 订单金额：" + orderList[i].Detail.OrderAmount + "\n");
+                }
+            }
+            return found;
+        }
+        public bool CheckOverTenThousand(int OrderAmount)
+        {
+            bool found = false;
+            for (int i = 0; i < orderList.Count; i++)
+            {
+                if (orderList[i].Detail.OrderAmount > 10000)
+                {
+                    found = true;
+                    Console.Write("订单信息为：" + " 商品名称：" + orderList[i].Detail.ItemName + " 用户名称：" + orderList[i].Detail.CustomerName + " 订单金额：" + orderList[i].Detail.OrderAmount + "\n");
                 }
             }
             return found;
@@ -126,6 +146,7 @@ namespace CSharp_Test
             }
             return found;
         }
+        
         public bool UpdateOrderItemName(int id, string ItemName)
         {
             bool found = false;
@@ -159,11 +180,13 @@ namespace CSharp_Test
                     string name1 = Console.ReadLine();
                     Console.WriteLine("输入:客户名称");
                     string name2 = Console.ReadLine();
-                    service.AddOrder(name1, name2);
+                    Console.WriteLine("输入:商品金额");
+                    int amount1 = Convert.ToInt32(Console.ReadLine());
+                    service.AddOrder(name1, name2,amount1);
                 }
                 else if (command == "b")
                 {
-                    Console.WriteLine("输入:\na:通过id查询\nb:通过商品名称查询\nc:通过客户名称查询");
+                    Console.WriteLine("输入:\na:通过id查询\nb:通过商品名称查询\nc:通过客户名称查询\nd:订单金额大于1万元的订单");
                     string command2 = Console.ReadLine();
                     string info = Console.ReadLine();
                     bool succ = true;
@@ -179,8 +202,12 @@ namespace CSharp_Test
                     {
                         succ = service.FindOrderByCustomerName(info);
                     }
+                    else if (command2 == "d")
+                    {
+                        succ = service.CheckOverTenThousand(Convert.ToInt32(info));
+                    }
 
-                    if (succ == false) Console.WriteLine("未找到商品");
+                        if (succ == false) Console.WriteLine("未找到商品");
                 }
                 else if (command == "c")
                 {
