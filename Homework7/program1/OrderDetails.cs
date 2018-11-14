@@ -1,8 +1,6 @@
 ﻿using System;
 
-namespace program1
-{
-    [Serializable]
+[Serializable]
     public class OrderDetails
     {
         private double price;
@@ -26,8 +24,4 @@ namespace program1
         public double Price { get => price; set => price = value; }
         public double Count { get => count; set => count = value; }
         public string Name { get => name; set => name = value; }
-        public string Test { get; set; }
     }
-
-}
-

@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Xml.Serialization;
-using System.Xml;
-using System.Xml.XPath;
-using System.Xml.Xsl;
 
-namespace program1
-{
-    [Serializable]
+[Serializable]
     public class OrderService
     {
         private List<Order> orderList;
-        public List<Order> OrderList { get => orderList; }
+        public List<Order> OrderList { get=>orderList; }
 
         public OrderService()
         {
@@ -122,7 +117,7 @@ namespace program1
             return list;
         }
 
-        public FileInfo Export(String fileName = "s.xml")
+        public FileInfo Export(String fileName="s.xml")
         {
             XmlSerializer xmlser = new XmlSerializer(typeof(OrderService));
             FileStream fs = new FileStream(fileName, FileMode.Create);
@@ -146,30 +141,4 @@ namespace program1
             fs.Close();
             return service;
         }
-
-        public FileInfo ExportHtml(String url)
-        {
-            try{
-                this.Export();
-                XmlDocument doc = new XmlDocument();
-                doc.Load("s.xml");
-                XPathNavigator nav = doc.CreateNavigator();
-                nav.MoveToRoot();
-                XslCompiledTransform xt = new XslCompiledTransform();
-                xt.Load("s.xslt");
-                XmlTextWriter writer = new XmlTextWriter(new FileStream(url, FileMode.Create), System.Text.Encoding.UTF8);
-                xt.Transform(nav, null, writer);
-            }
-            catch (XmlException e)
-            {
-                Console.WriteLine("Exception caught:" + e.ToString());
-            }
-            catch (XsltException e)
-            {
-                Console.WriteLine("Exception caught:" + e.ToString());
-            }
-            return new FileInfo(url);
-        }
     }
-
-}

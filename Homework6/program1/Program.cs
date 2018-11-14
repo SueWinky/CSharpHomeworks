@@ -9,16 +9,16 @@ namespace program1
         {
 
             Order myOrder = new Order("Sue", "firstOrder");
-            myOrder.AddDetail("lenovo", 4, 6000);
+            myOrder.AddDetail("Dell", 4, 8000);           
+            myOrder.Tel = "+61919921222";
             Order newOrder = new Order("Sue", "secondOrder");
-            newOrder.AddDetail("Dell", 44, 7000);
-            myOrder.AddDetail("Thinkpad", 14, 5000);
+            newOrder.AddDetail("ThinkPad", 44, 6000);
+            newOrder.AddDetail("Lenovo", 14, 5000);
+            newOrder.Tel = "+61919910221";
             OrderService service = new OrderService();
             service.AddOrder(myOrder);
             service.AddOrder(newOrder);
             service.Export();
-            OrderService newService = OrderService.Import("i.xml");
-            newService.Export("e.xml");
         }
     }
 }

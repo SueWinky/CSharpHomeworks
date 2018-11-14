@@ -64,9 +64,9 @@ namespace program1.Tests
         public void CheckOverTenThousandTest()
         {
             Order order = new Order("Sue", "test1");
-            order.AddDetail("phone", 10, 1100);
+            order.AddDetail("Apple", 4, 4400);
             Order another = new Order("Moon", "test2");
-            order.AddDetail("rice", 1, 1);
+            order.AddDetail("Byul", 44, 1222);
             OrderService service = new OrderService();
             service.AddOrder(order);
             service.AddOrder(another);
