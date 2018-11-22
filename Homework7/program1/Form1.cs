@@ -14,7 +14,7 @@ namespace OrderWinForm
         public Form1()
         {
             InitializeComponent();
-            service = OrderService.Import("s.xml");
+            service = OrderService.Import("../../s.xml");
             orderBindingSource.DataSource = service.OrderList;
         }
 
@@ -86,12 +86,12 @@ namespace OrderWinForm
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            service.Export("s.xml");
+            service.Export("../../s.xml");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            service.ExportHtml("s.html");
+            service.ExportHtml("../../s.html");
         }
     }
 }

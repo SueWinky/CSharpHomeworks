@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<OrderService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OrderList>
+    <Order>
+      <Name>firstOrder</Name>
+      <Client>Jeff</Client>
+      <Id>20181115000</Id>
+      <Data>
+        <OrderDetails>
+          <Price>8000</Price>
+          <Count>5</Count>
+          <Name>IphoneX</Name>
+        </OrderDetails>
+        <OrderDetails>
+          <Price>7000</Price>
+          <Count>15</Count>
+          <Name>Iphone8</Name>
+        </OrderDetails>
+      </Data>
+      <Tel>+86123465800</Tel>
+    </Order>
+    <Order>
+      <Name>secondOrder</Name>
+      <Client>Jeff</Client>
+      <Id>20181115001</Id>
+      <Data>
+        <OrderDetails>
+          <Price>10000</Price>
+          <Count>99</Count>
+          <Name>Huawei</Name>
+        </OrderDetails>
+      </Data>
+      <Tel>+555555555500</Tel>
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115002</Id>
+      <Data />
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115003</Id>
+      <Data />
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115004</Id>
+      <Data />
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115005</Id>
+      <Data />
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115006</Id>
+      <Data />
+    </Order>
+    <Order>
+      <Name />
+      <Client />
+      <Id>20181115007</Id>
+      <Data />
+    </Order>
+  </OrderList>
+</OrderService>
